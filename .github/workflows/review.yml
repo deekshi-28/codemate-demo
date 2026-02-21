@@ -1,15 +1,15 @@
-name: CodeMate Review
+name: CodeMate AI Review
 
 on:
   pull_request:
     types: [opened, synchronize]
 
 jobs:
-  review:
+  notify-backend:
     runs-on: ubuntu-latest
     steps:
-      - name: Call Backend
+      - name: Send PR Data to Backend
         run: |
-          curl -X POST https://your-deployed-url/webhook \
+          curl -X POST https://reticent-charity-necessitative.ngrok-free.dev/webhook \
           -H "Content-Type: application/json" \
           -d '${{ toJson(github.event) }}'
